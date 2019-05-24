@@ -1,0 +1,23 @@
+<div class="sensor-container">
+  <mat-expansion-panel class="plant-expansion-panel mat-elevation-z6" [expanded]="true">
+
+  <mat-expansion-panel-header class="plant-expansion-panel-header">
+
+    <mat-panel-title>
+      Sensor {{name}}
+    </mat-panel-title>
+
+  </mat-expansion-panel-header>
+
+  <div class="sensor-content">
+
+    <form class="sensor-content-form" [formGroup]="options">
+      <mat-form-field>
+        <input matInput type="number" placeholder="Sensing rate (ms)" formControlName="fontSize" min="10">
+      </mat-form-field>
+    </form>
+
+  </div>
+
+  </mat-expansion-panel>
+</div>

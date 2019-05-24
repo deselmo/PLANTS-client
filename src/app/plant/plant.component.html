@@ -1,0 +1,28 @@
+<div class="plant-container">
+  <mat-expansion-panel class="plant-expansion-panel mat-elevation-z12" [expanded]="true">
+
+    <mat-expansion-panel-header class="plant-expansion-panel-header">
+
+      <mat-panel-title>
+        Plant {{identificator}}
+      </mat-panel-title>
+
+      <mat-panel-description>
+        {{description}}
+      </mat-panel-description>
+
+
+      <div class="plant-status">
+        <mat-icon
+          id="link_status"
+          aria-hidden="false"
+          aria-label="link_status"
+        >{{link_state}}</mat-icon>
+      </div>
+
+    </mat-expansion-panel-header>
+
+    <app-sensor *ngFor="let sensor of sensors" name="{{sensor}}"></app-sensor>
+
+  </mat-expansion-panel>
+</div>
