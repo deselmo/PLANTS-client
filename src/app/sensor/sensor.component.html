@@ -14,42 +14,60 @@
       
       <div class="sensor-content">
 
-        <form class="sensor-content-form-sensing-rate" [formGroup]="options">
+        <form class="sensor-content-form-sensing-rate" [formGroup]="options_sensing_rate">
           <mat-form-field>
             <input matInput type="number" placeholder="Sensing rate (ms)" formControlName="sensing_rate" min="10">
           </mat-form-field>
+          <button mat-button><mat-icon>update</mat-icon></button>
         </form>
 
-        <mat-card class="sensor-card">
-          <mat-card-header>
-            <mat-card-title class="sensor-card-title">value</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p>1023.0</p>
-          </mat-card-content>
-        </mat-card>
-
-        <mat-card  class="sensor-card">
-          <mat-card-header>
-            <mat-card-title class="sensor-card-title">time</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p>1023.0</p>
-          </mat-card-content>
-        </mat-card>
+        <form class="sensor-content-form-events" [formGroup]="options">
+          <mat-form-field>
+              <input readonly matInput type="number" placeholder="value" formControlName="value">
+          </mat-form-field>
+          <mat-form-field>
+              <input readonly matInput type="number" placeholder="time" formControlName="time">
+          </mat-form-field>
+        </form>
       </div>
     </mat-tab>
     <mat-tab label="Events">
         <div class="sensor-content">
-          <form class="sensor-content-form-events" [formGroup]="options">
+          <form class="sensor-content-form-events" [formGroup]="options_add_event">
             <mat-form-field>
-                <input matInput type="number" placeholder="From">
+                <input matInput type="number" placeholder="From" formControlName="from">
             </mat-form-field>
             <mat-form-field>
-                <input matInput type="number" placeholder="To">
+                <input matInput type="number" placeholder="To" formControlName="to">
             </mat-form-field>
             <button mat-button><mat-icon>add</mat-icon></button>
           </form>
+
+          <form *ngFor="let event of events" class="sensor-content-form-events" [formGroup]="options">
+            <mat-form-field>
+                <input readonly matInput type="text" placeholder="From" value={{event.from}}>
+            </mat-form-field>
+            <mat-form-field>
+                <input readonly matInput type="text" placeholder="To" value={{event.to}}>
+            </mat-form-field>
+            <button mat-button><mat-icon>remove</mat-icon></button>
+          </form>
+
+        </div>
+    </mat-tab>
+
+    <mat-tab label="History">
+        <div class="sensor-content">
+
+          <form *ngFor="let measure of measures" class="sensor-content-form-events" [formGroup]="options">
+            <mat-form-field>
+                <input readonly matInput type="number" placeholder="value" value={{measure.value}}>
+            </mat-form-field>
+            <mat-form-field>
+                <input readonly matInput type="datetime" placeholder="time" value={{measure.time}}>
+            </mat-form-field>
+          </form>
+
         </div>
     </mat-tab>
   </mat-tab-group>
