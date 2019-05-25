@@ -16,7 +16,7 @@ export class SensorComponent implements OnInit {
   constructor(fb: FormBuilder) {
     this.options = fb.group({
       color: 'primary',
-      fontSize: [1000, Validators.min(100)],
+      sensing_rate: [1000, Validators.min(100)],
     });
   }
 

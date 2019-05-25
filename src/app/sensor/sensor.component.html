@@ -3,21 +3,56 @@
 
   <mat-expansion-panel-header class="plant-expansion-panel-header">
 
-    <mat-panel-title>
+    <mat-panel-title class="sensor-title">
       Sensor {{name}}
     </mat-panel-title>
 
   </mat-expansion-panel-header>
 
-  <div class="sensor-content">
+  <mat-tab-group [dynamicHeight]="true" mat-align-tabs="center">
+    <mat-tab label="Data">
+      
+      <div class="sensor-content">
 
-    <form class="sensor-content-form" [formGroup]="options">
-      <mat-form-field>
-        <input matInput type="number" placeholder="Sensing rate (ms)" formControlName="fontSize" min="10">
-      </mat-form-field>
-    </form>
+        <form class="sensor-content-form-sensing-rate" [formGroup]="options">
+          <mat-form-field>
+            <input matInput type="number" placeholder="Sensing rate (ms)" formControlName="sensing_rate" min="10">
+          </mat-form-field>
+        </form>
 
-  </div>
+        <mat-card class="sensor-card">
+          <mat-card-header>
+            <mat-card-title class="sensor-card-title">value</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>1023.0</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card  class="sensor-card">
+          <mat-card-header>
+            <mat-card-title class="sensor-card-title">time</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>1023.0</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Events">
+        <div class="sensor-content">
+          <form class="sensor-content-form-events" [formGroup]="options">
+            <mat-form-field>
+                <input matInput type="number" placeholder="From">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="number" placeholder="To">
+            </mat-form-field>
+            <button mat-button><mat-icon>add</mat-icon></button>
+          </form>
+        </div>
+    </mat-tab>
+  </mat-tab-group>
 
   </mat-expansion-panel>
 </div>
