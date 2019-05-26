@@ -1,0 +1,11 @@
+export * from './data.service';
+import { DataService } from './data.service';
+export * from './event.service';
+import { EventService } from './event.service';
+export * from './plants.service';
+import { PlantsService } from './plants.service';
+export * from './sensor.service';
+import { SensorService } from './sensor.service';
+export * from './sink.service';
+import { SinkService } from './sink.service';
+export const APIS = [DataService, EventService, PlantsService, SensorService, SinkService];
