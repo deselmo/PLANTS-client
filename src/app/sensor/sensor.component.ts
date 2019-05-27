@@ -2,7 +2,6 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Sensor, SensorService } from '../api/index'
-import { TestBed } from '@angular/core/testing';
 
 interface IEvent {
   from: string;
