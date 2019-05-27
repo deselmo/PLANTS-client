@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Plant, Sensor, SensorService } from '../api/index'
 
 @Component({
   selector: 'app-plant',
@@ -7,23 +8,37 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class PlantComponent implements OnInit {
-  @Input() identificator: number;
-  @Input() description: string;
-  @Input() network: number;
-  @Input() connected: boolean;
-  @Input() sensors: string[];
-  // @Input() sensors: string[] = ["Sensor 1","Sensor 2","Sensor 3"];
+  @Input() plant: Plant;
 
-  link_state: string;
+  identificator: number;
+  description: string;
+  network: number;
 
-  constructor() {
+  sensors: Sensor[] = [];
+
+  connected: string;
+
+  sensorService: SensorService;
+
+  constructor(sensorService: SensorService) {
+    this.sensorService = sensorService;
   }
 
   ngOnInit() {
-    if(this.connected) {
-      this.link_state = "link";
+    this.identificator = this.plant.microbit;
+    this.description = this.plant.description;
+
+    if(this.plant.connected) {
+      this.connected = "link";
     } else {
-      this.link_state = "link_off";
+      this.connected = "link_off";
     }
+
+    this.sensorService.getSensors(this.identificator)
+      .subscribe(x => this.updateUi(x, this.sensors));
+  }
+
+  updateUi(sensors: Sensor[], internalSensors: Sensor[]) {
+    internalSensors.push.apply(internalSensors, sensors);
   }
 }

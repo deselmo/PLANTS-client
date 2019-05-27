@@ -14,15 +14,15 @@
 
       <div class="plant-status">
         <mat-icon
-          id="link_status"
+          id="connected"
           aria-hidden="false"
-          aria-label="link_status"
-        >{{link_state}}</mat-icon>
+          aria-label="connected"
+        >{{connected}}</mat-icon>
       </div>
 
     </mat-expansion-panel-header>
 
-    <app-sensor *ngFor="let sensor of sensors" name="{{sensor}}"></app-sensor>
+    <app-sensor *ngFor="let sensor of sensors" [sensor]=sensor></app-sensor>
 
   </mat-expansion-panel>
 </div>

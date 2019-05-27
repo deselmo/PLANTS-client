@@ -14,5 +14,5 @@
 export interface Sensor { 
     microbit: number;
     sensor: string;
-    samplingRate?: number;
+    sampling_rate?: number;
 }

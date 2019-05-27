@@ -4,10 +4,13 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from '../material-module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { PlantComponent } from './plant/plant.component';
 import { SensorComponent } from './sensor/sensor.component';
+
+import { ApiModule } from './api/api.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { SensorComponent } from './sensor/sensor.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ApiModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

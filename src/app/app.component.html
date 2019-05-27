@@ -1,7 +1,7 @@
 <div class="app-container">
 
   <mat-toolbar color=primary class="app-toolbar mat-elevation-z4">
-    <img style="height: 60%;" src="../assets/plants.svg" alt="PLANTS">
+    <object style="height: 60%;" data="../assets/plants.svg" alt="PLANTS" fill="red" type="image/svg+xml"></object>
     <span class="app-toolbar-spacer"></span>
     <button mat-icon-button>
       <mat-icon aria-hidden="false" aria-label="update">refresh</mat-icon>
@@ -13,11 +13,18 @@
 
     <mat-sidenav-content class="app-sidenav-content">
 
-      <app-plant identificator="1" [connected]="true" description="descrizione 1" [sensors]="['sensor1', 'sensor2']"></app-plant>
-      <app-plant identificator="2" [connected]="false" [sensors]="['sensor1']"></app-plant>
+    <!-- <app-plant *ngFor="let plant of plants"></app-plant> -->
+    <app-plant *ngFor="let plant of plants" [plant]=plant></app-plant>
+    <!-- <app-plant *ngFor="let plant of plants"
+      [identificator]={{plant.microbit}}
+      [connected]={{plant.connected}}
+      description={{plant.description}}
+      [sensors]={{sensors}}
+    ></app-plant> -->
+      <!-- <app-plant identificator="2" [connected]="false" [sensors]="['sensor1']"></app-plant>
       <app-plant identificator="3" description="descrizione tre"
       [sensors]="['sensor1', 'sensor2', 'sensor2', 'sensor2', 'sensor2', 'sensor2', 'sensor2']"
-      ></app-plant>
+      ></app-plant> -->
     </mat-sidenav-content>
 
   </mat-sidenav-container>

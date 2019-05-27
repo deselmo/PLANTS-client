@@ -4,7 +4,7 @@
   <mat-expansion-panel-header class="plant-expansion-panel-header">
 
     <mat-panel-title class="sensor-title">
-      Sensor {{name}}
+      {{sensor.sensor}}
     </mat-panel-title>
 
   </mat-expansion-panel-header>
@@ -14,11 +14,18 @@
       
       <div class="sensor-content">
 
-        <form class="sensor-content-form-sensing-rate" [formGroup]="options_sensing_rate">
+        <form class="sensor-content-form-sensing-rate" [formGroup]="options_sensing_rate" (ngSubmit)="send_update_sampling_rate()">
           <mat-form-field>
-            <input matInput type="number" placeholder="Sensing rate (ms)" formControlName="sensing_rate" min="10">
+            <input matInput type="number"
+              placeholder="Sampling rate (ms)"
+              formControlName="sensing_rate"
+              [value]="sensor.sampling_rate"
+            >
           </mat-form-field>
-          <button mat-button><mat-icon>update</mat-icon></button>
+          <button mat-button [disabled]="waiting_update_sampling_rate">
+            <mat-icon *ngIf="!waiting_update_sampling_rate">update</mat-icon>
+            <mat-spinner *ngIf="waiting_update_sampling_rate"  [diameter]="30" ></mat-spinner>
+          </button>
         </form>
 
         <form class="sensor-content-form-events" [formGroup]="options">

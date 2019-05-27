@@ -28,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class EventService {
 
-    protected basePath = 'https://localhost:8080';
+    protected basePath = 'http://192.168.50.1:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -165,10 +165,10 @@ export class EventService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public unsubscribe(eventId: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public unsubscribe(eventId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public unsubscribe(eventId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public unsubscribe(eventId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public unsubscribe(eventId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public unsubscribe(eventId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public unsubscribe(eventId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public unsubscribe(eventId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (eventId === null || eventId === undefined) {
             throw new Error('Required parameter eventId was null or undefined when calling unsubscribe.');
