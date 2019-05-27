@@ -31,7 +31,7 @@ export class SensorComponent implements OnInit {
 
   options_sensing_rate: FormGroup;
   options_add_event: FormGroup;
-  options: FormGroup;
+  options_data: FormGroup;
 
   waiting_update_sampling_rate: boolean = false;
 
@@ -44,13 +44,13 @@ export class SensorComponent implements OnInit {
     });
     this.options_add_event = fb.group({
       color: 'primary',
-      to: ["any"],
-      from: ["any"],
+      to: ['any'],
+      from: ['any'],
     });
-    this.options = fb.group({
+    this.options_data = fb.group({
       color: 'primary',
-      value: [0],
-      time: [0],
+      value: [],
+      time: [],
     });
   }
 

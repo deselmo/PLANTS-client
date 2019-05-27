@@ -28,7 +28,7 @@
           </button>
         </form>
 
-        <form class="sensor-content-form-events" [formGroup]="options">
+        <form class="sensor-content-form-events" [formGroup]="options_data">
           <mat-form-field>
               <input readonly matInput type="number" placeholder="value" formControlName="value">
           </mat-form-field>
@@ -50,7 +50,7 @@
             <button mat-button><mat-icon>add</mat-icon></button>
           </form>
 
-          <form *ngFor="let event of events" class="sensor-content-form-events" [formGroup]="options">
+          <form *ngFor="let event of events" class="sensor-content-form-events">
             <mat-form-field>
                 <input readonly matInput type="text" placeholder="From" value={{event.from}}>
             </mat-form-field>
@@ -66,7 +66,7 @@
     <mat-tab label="History">
         <div class="sensor-content">
 
-          <form *ngFor="let measure of measures" class="sensor-content-form-events" [formGroup]="options">
+          <form *ngFor="let measure of measures" class="sensor-content-form-events">
             <mat-form-field>
                 <input readonly matInput type="number" placeholder="value" value={{measure.value}}>
             </mat-form-field>
