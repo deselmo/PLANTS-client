@@ -1,0 +1,9 @@
+<form class="sensor-content-form" [formGroup]="options_add_event" (ngSubmit)="send_add_event()">
+  <mat-form-field>
+      <input matInput type="number" placeholder="From" formControlName="from">
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput type="number" placeholder="To" formControlName="to">
+  </mat-form-field>
+  <button mat-button type="submit"><mat-icon>add</mat-icon></button>
+</form>

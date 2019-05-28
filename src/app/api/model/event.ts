@@ -16,5 +16,5 @@ export interface Event {
     microbit?: number;
     data: EventParameter;
     return_address: string;
-    id: number;
+    id?: number;
 }

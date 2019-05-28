@@ -12,13 +12,15 @@ import { SensorComponent } from './sensor/sensor.component';
 
 import { ApiModule } from './api/api.module';
 import { EventRemoveComponent } from './event-remove/event-remove.component';
+import { EventAddComponent } from './event-add/event-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlantComponent,
     SensorComponent,
-    EventRemoveComponent
+    EventRemoveComponent,
+    EventAddComponent
   ],
   imports: [
     BrowserModule,

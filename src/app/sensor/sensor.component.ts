@@ -3,11 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Sensor, SensorService, Event, EventService } from '../api/index'
 
-interface IEvent {
-  from: string;
-  to: string;
-}
-
 interface IMeasure {
   value: string;
   time: string;
@@ -22,8 +17,6 @@ interface IMeasure {
 
 export class SensorComponent implements OnInit {
   @Input() sensor: Sensor;
-
-  // @Input() events: IEvent[] = [{ from: "1", to: "2" }, { from: "3", to: "4" }, { from: "any", to: "any" }];
   @Input() measures: IMeasure[] = [{ value: "1", time: "00:00 01/01/19" }, { value: "3", time: "00:00 01/01/19" }, { value: "2", time: "00:00 01/01/19" }];
 
   sensorService: SensorService;
@@ -32,7 +25,6 @@ export class SensorComponent implements OnInit {
   events: Event[] = [];
 
   options_sensing_rate: FormGroup;
-  options_add_event: FormGroup;
   options_data: FormGroup;
 
   waiting_update_sampling_rate: boolean = false;
@@ -42,12 +34,7 @@ export class SensorComponent implements OnInit {
     this.eventService = eventService;
 
     this.options_sensing_rate = fb.group({
-      sensing_rate: [Validators.min(0)],
-    });
-    this.options_add_event = fb.group({
-      color: 'primary',
-      to: [],
-      from: [],
+      sensing_rate: [Validators.required, Validators.min(0)],
     });
     this.options_data = fb.group({
       color: 'primary',

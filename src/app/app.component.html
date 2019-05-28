@@ -13,18 +13,7 @@
 
     <mat-sidenav-content class="app-sidenav-content">
 
-    <!-- <app-plant *ngFor="let plant of plants"></app-plant> -->
     <app-plant *ngFor="let plant of plants" [plant]=plant></app-plant>
-    <!-- <app-plant *ngFor="let plant of plants"
-      [identificator]={{plant.microbit}}
-      [connected]={{plant.connected}}
-      description={{plant.description}}
-      [sensors]={{sensors}}
-    ></app-plant> -->
-      <!-- <app-plant identificator="2" [connected]="false" [sensors]="['sensor1']"></app-plant>
-      <app-plant identificator="3" description="descrizione tre"
-      [sensors]="['sensor1', 'sensor2', 'sensor2', 'sensor2', 'sensor2', 'sensor2', 'sensor2']"
-      ></app-plant> -->
     </mat-sidenav-content>
 
   </mat-sidenav-container>

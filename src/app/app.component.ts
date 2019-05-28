@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs'
 
 import { Plant, PlantsService } from './api/index'
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [ AppComponent ]
 })
 export class AppComponent implements OnInit {
   title = 'P.L.A.N.T.S.';
@@ -15,13 +16,21 @@ export class AppComponent implements OnInit {
   
   plantsService: PlantsService;
 
-  constructor(plantsService: PlantsService) {
+  ip_address: string = "";
+
+  constructor(protected httpClient: HttpClient, plantsService: PlantsService) {
     this.plantsService = plantsService;
+
+    httpClient.get<string>("http://192.168.50.1:4201/my-ip")
+      .subscribe(x => this.save_ip_address(x, this));
   }
 
-  ngOnInit(): void {
-    this.updatePlants()
+  save_ip_address(ip_address: string, this_: AppComponent) {
+    this_.ip_address = ip_address;
+    this.updatePlants();
   }
+
+  ngOnInit(): void { }
 
   updatePlants() {
     this.plantsService.getPlants().subscribe(x => this.on_updatePlants(x, this));
