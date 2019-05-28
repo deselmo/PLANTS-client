@@ -34,11 +34,15 @@ export class PlantComponent implements OnInit {
       this.connected = "link_off";
     }
 
-    this.sensorService.getSensors(this.identificator)
-      .subscribe(x => this.updateUi(x, this.sensors));
+    this.update_sensors();
   }
 
-  updateUi(sensors: Sensor[], internalSensors: Sensor[]) {
-    internalSensors.push.apply(internalSensors, sensors);
+  update_sensors() {
+    this.sensorService.getSensors(this.identificator)
+      .subscribe(x => this.on_update_sensors(x, this));
+  }
+
+  on_update_sensors(sensors: Sensor[], this_: PlantComponent) {
+    this_.sensors = sensors;
   }
 }

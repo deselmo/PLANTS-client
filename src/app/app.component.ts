@@ -20,10 +20,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.plantsService.getPlants().subscribe(x => this.updateUi(x, this.plants));
+    this.updatePlants()
   }
 
-  updateUi(plants: Plant[], internalPlants: Plant[]) {
-    internalPlants.push.apply(internalPlants, plants);
+  updatePlants() {
+    this.plantsService.getPlants().subscribe(x => this.on_updatePlants(x, this));
+  }
+
+  on_updatePlants(plants: Plant[], this_: AppComponent) {
+    this_.plants = plants;
   }
 }
