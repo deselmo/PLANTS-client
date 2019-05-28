@@ -40,20 +40,9 @@
     </mat-tab>
     <mat-tab label="Events">
         <div class="sensor-content">
-          <!-- <form class="sensor-content-form" [formGroup]="options_add_event">
-            <mat-form-field>
-                <input matInput type="number" placeholder="From" formControlName="from">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput type="number" placeholder="To" formControlName="to">
-            </mat-form-field>
-            <button mat-button><mat-icon>add</mat-icon></button>
-          </form> -->
-
           <app-event-add class="event-container" [sensorComponent]= "this"></app-event-add>
 
           <app-event-remove *ngFor="let event of events" class="event-container" [event]="event" [sensorComponent]= "this"></app-event-remove>
-
         </div>
     </mat-tab>
 
