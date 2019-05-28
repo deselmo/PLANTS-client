@@ -51,7 +51,7 @@
     font-size: 15px;
 }
 
-.sensor-content-form-events {
+.sensor-content-form {
     flex: 1 100%;
     display: flex;
     flex-direction: row;
@@ -61,14 +61,14 @@
     font-size: 18px;
 }
 
-.sensor-content-form-events mat-form-field {
+.sensor-content-form mat-form-field {
     margin: 20px;
     margin-top: 0px;
     margin-bottom: 0px;
     flex: 1 1 200px;
 }
 
-.sensor-content-form-events button {
+.sensor-content-form button {
     flex: 0 1 60px;
     height: 60px;
 }
@@ -103,4 +103,10 @@
     margin-top: 0px;
     margin-bottom: 0px;
     flex: 1 1 200px;
+}
+
+.event-container {
+    flex: 1 100%;
+    display: flex;
+    flex-direction: row;
 }

@@ -15,5 +15,6 @@ import { EventParameter } from './eventParameter';
 export interface Event { 
     microbit?: number;
     data: EventParameter;
-    returnAddress: string;
+    return_address: string;
+    id: number;
 }

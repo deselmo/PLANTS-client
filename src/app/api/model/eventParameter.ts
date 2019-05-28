@@ -13,6 +13,6 @@
 
 export interface EventParameter { 
     sensor?: string;
-    minValue?: number;
-    maxValue?: number;
+    min_value?: number;
+    max_value?: number;
 }
