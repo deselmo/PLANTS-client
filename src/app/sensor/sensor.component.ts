@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Injectable, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Sensor, SensorService, Event, EventService } from '../api/index'
+import { Sensor, SensorService, Event, EventService, Data, DataService } from '../api/index'
 
 interface IMeasure {
   value: string;
@@ -17,21 +17,28 @@ interface IMeasure {
 
 export class SensorComponent implements OnInit {
   @Input() sensor: Sensor;
-  @Input() measures: IMeasure[] = [{ value: "1", time: "00:00 01/01/19" }, { value: "3", time: "00:00 01/01/19" }, { value: "2", time: "00:00 01/01/19" }];
 
   sensorService: SensorService;
   eventService: EventService;
+  dataService: DataService;
 
   events: Event[] = [];
+  history: Data[] = [];
 
   options_sensing_rate: FormGroup;
   options_data: FormGroup;
 
   waiting_update_sampling_rate: boolean = false;
 
-  constructor(fb: FormBuilder, sensorService: SensorService, eventService: EventService) {
+  constructor(
+    fb: FormBuilder,
+    sensorService: SensorService,
+    eventService: EventService,
+    dataService: DataService
+  ) {
     this.sensorService = sensorService;
     this.eventService = eventService;
+    this.dataService = dataService;
 
     this.options_sensing_rate = fb.group({
       sensing_rate: [Validators.required, Validators.min(0)],
@@ -45,6 +52,7 @@ export class SensorComponent implements OnInit {
 
   ngOnInit() {
     this.update_events();
+    this.update_history();
   }
 
   send_update_sampling_rate() {
@@ -78,5 +86,14 @@ export class SensorComponent implements OnInit {
 
   on_update_events(events: Event[], this_: SensorComponent) {
     this_.events = events;
+  }
+
+  update_history() {
+    this.dataService.getData(this.sensor.microbit, this.sensor.sensor)
+      .subscribe(x => this.on_update_history(x, this));
+  }
+
+  on_update_history(history: Data[], this_: SensorComponent) {
+    this_.history = history;
   }
 }

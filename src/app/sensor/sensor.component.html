@@ -49,12 +49,12 @@
     <mat-tab label="History">
         <div class="sensor-content">
 
-          <form *ngFor="let measure of measures" class="sensor-content-form">
+          <form *ngFor="let measure of history" class="sensor-content-form">
             <mat-form-field>
                 <input readonly matInput type="number" placeholder="value" [value]="measure.value">
             </mat-form-field>
             <mat-form-field>
-                <input readonly matInput type="datetime" placeholder="time" [value]="measure.time">
+                <input readonly matInput type="datetime" placeholder="time" [value]="measure.timestamp">
             </mat-form-field>
           </form>
 
