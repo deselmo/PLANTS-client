@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PlantComponent } from './plant/plant.component';
 import { SensorComponent } from './sensor/sensor.component';
-import { EventComponent } from './event/event.component';
 
 import { ApiModule } from './api/api.module';
 import { EventRemoveComponent } from './event-remove/event-remove.component';
@@ -19,7 +18,6 @@ import { EventRemoveComponent } from './event-remove/event-remove.component';
     AppComponent,
     PlantComponent,
     SensorComponent,
-    EventComponent,
     EventRemoveComponent
   ],
   imports: [
