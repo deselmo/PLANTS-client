@@ -29,6 +29,7 @@ export class SensorComponent implements OnInit {
   options_data: FormGroup;
 
   waiting_update_sampling_rate: boolean = false;
+  waiting_update_history: boolean = true;
 
   constructor(
     fb: FormBuilder,
@@ -59,7 +60,7 @@ export class SensorComponent implements OnInit {
     this.sensorService.updateSensingTime(
       this.sensor.microbit,
       this.sensor.sensor,
-      this.options_sensing_rate.controls['sensing_rate'].value
+      this.options_sensing_rate.controls['sensing_rate'].value * 100
     ).subscribe(
       x => this.on_update_sampling_rate(x, this),
       x => this.on_update_sampling_rate_error(x, this));
@@ -67,13 +68,13 @@ export class SensorComponent implements OnInit {
 
   on_update_sampling_rate(code: string, this_: SensorComponent) {
     if(code != "200") {
-      this_.options_sensing_rate.controls['sensing_rate'].setValue(this_.sensor.sampling_rate);
+      this_.options_sensing_rate.controls['sensing_rate'].setValue(this_.sensor.sampling_rate / 100);
     }
     this_.waiting_update_sampling_rate = false;
   }
 
   on_update_sampling_rate_error(code: string, this_: SensorComponent) {
-    this_.options_sensing_rate.controls['sensing_rate'].setValue(this_.sensor.sampling_rate);
+    this_.options_sensing_rate.controls['sensing_rate'].setValue(this_.sensor.sampling_rate / 100);
     this_.waiting_update_sampling_rate = false;
   }
 
@@ -89,11 +90,13 @@ export class SensorComponent implements OnInit {
   }
 
   update_history() {
+    this.waiting_update_history = true;
     this.dataService.getData(this.sensor.microbit, this.sensor.sensor)
       .subscribe(x => this.on_update_history(x, this));
   }
 
   on_update_history(history: Data[], this_: SensorComponent) {
     this_.history = history;
+    this_.waiting_update_history = false;
   }
 }

@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   plantsService: PlantsService;
 
   ip_address: string = "";
+  waiting_refresh: boolean = true;
 
   constructor(protected httpClient: HttpClient, plantsService: PlantsService) {
     this.plantsService = plantsService;
@@ -38,5 +39,11 @@ export class AppComponent implements OnInit {
 
   on_updatePlants(plants: Plant[], this_: AppComponent) {
     this_.plants = plants;
+    this_.waiting_refresh = false;
+  }
+
+  refresh() {
+    this.waiting_refresh = true;
+    this.updatePlants();
   }
 }

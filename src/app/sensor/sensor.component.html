@@ -1,5 +1,5 @@
 <div class="sensor-container">
-  <mat-expansion-panel class="plant-expansion-panel mat-elevation-z6" [expanded]="true">
+  <mat-expansion-panel class="plant-expansion-panel mat-elevation-z6" [expanded]="false">
 
   <mat-expansion-panel-header class="plant-expansion-panel-header">
 
@@ -17,9 +17,9 @@
         <form class="sensor-content-form-sensing-rate" [formGroup]="options_sensing_rate" (ngSubmit)="send_update_sampling_rate()">
           <mat-form-field>
             <input matInput type="number"
-              placeholder="Sampling rate (ms)"
+              placeholder="Sampling rate (deciseconds)"
               formControlName="sensing_rate"
-              [value]="sensor.sampling_rate"
+              [value]="sensor.sampling_rate / 100"
             >
           </mat-form-field>
           <button mat-button [disabled]="waiting_update_sampling_rate">
@@ -49,12 +49,18 @@
     <mat-tab label="History">
         <div class="sensor-content">
 
+          <button mat-button [disabled]="waiting_update_history" (click)="update_history()">
+            <mat-icon *ngIf="!waiting_update_history">refresh</mat-icon>
+            <mat-spinner *ngIf="waiting_update_history" [diameter]="36" ></mat-spinner>
+          </button>
+
           <form *ngFor="let measure of history" class="sensor-content-form">
             <mat-form-field>
                 <input readonly matInput type="number" placeholder="value" [value]="measure.value">
             </mat-form-field>
             <mat-form-field>
-                <input readonly matInput type="datetime" placeholder="time" [value]="measure.timestamp">
+                <input readonly matInput type="datetime" placeholder="time"
+                  [value]="measure.timestamp | date: 'HH:mm:ss:SS dd-MM-yyyy'">
             </mat-form-field>
           </form>
 

@@ -1,3 +1,5 @@
+@import "~src/variables.scss";
+
 .app-container {
     display: flex;
     flex-direction: column;
@@ -18,6 +20,10 @@
 
 .app-sidenav-container {
     flex: 1;
+}
+
+.toolbar-spinner::ng-deep svg circle {
+    stroke: $warn;
 }
 
 app-sensor {
