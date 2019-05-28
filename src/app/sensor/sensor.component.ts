@@ -52,6 +52,7 @@ export class SensorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.options_sensing_rate.controls['sensing_rate'].setValue(this.sensor.sampling_rate / 100);
     this.update_events();
     this.update_history();
   }

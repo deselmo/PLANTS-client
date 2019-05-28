@@ -47,7 +47,6 @@
             <input matInput type="number"
               placeholder="Sampling rate (deciseconds)"
               formControlName="sensing_rate"
-              [value]="sensor.sampling_rate / 100"
             >
           </mat-form-field>
           <button mat-button [disabled]="waiting_update_sampling_rate">

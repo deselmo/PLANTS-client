@@ -59,5 +59,6 @@ export class EventAddComponent implements OnInit {
     this_.sensorComponent.update_events();
     this_.options_add_event.controls['from'].setValue(undefined);
     this_.options_add_event.controls['to'].setValue(undefined);
+    this_.options_add_event.controls['communicate_to'].setValue(undefined);
   }
 }
