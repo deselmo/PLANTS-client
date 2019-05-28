@@ -1,9 +1,12 @@
 <form class="sensor-content-form" (ngSubmit)="send_remove_event()">
   <mat-form-field>
-    <input readonly matInput type="text" placeholder="From" [value]="event.data.min_value || 'any'">
+    <input readonly matInput type="text" placeholder="Min" [value]="event.data.min_value || 'any'">
   </mat-form-field>
   <mat-form-field>
-    <input readonly matInput type="text" placeholder="To" [value]="event.data.max_value || 'any'">
+    <input readonly matInput type="text" placeholder="Max" [value]="event.data.max_value || 'any'">
+  </mat-form-field>
+  <mat-form-field>
+    <input readonly matInput type="text" placeholder="Communicate to" [value]="event.return_address || 'nobody'">
   </mat-form-field>
   <button mat-button><mat-icon>remove</mat-icon></button>
 </form>

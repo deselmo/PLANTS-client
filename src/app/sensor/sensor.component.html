@@ -11,8 +11,36 @@
 
   <mat-tab-group [dynamicHeight]="true" mat-align-tabs="center">
     <mat-tab label="Data">
-      
+
+        <div class="sensor-content">
+
+            <button mat-button [disabled]="waiting_update_history" (click)="update_history()">
+              <mat-icon *ngIf="!waiting_update_history">refresh</mat-icon>
+              <mat-spinner *ngIf="waiting_update_history" [diameter]="36" ></mat-spinner>
+            </button>
+        </div>
+
+        <div class="sensor-content">
+
+            <span *ngIf="history.length == 0">no data</span>
+  
+            <form *ngFor="let measure of history" class="sensor-content-form">
+              <mat-form-field>
+                <input readonly matInput type="number" placeholder="value" [value]="measure.value">
+              </mat-form-field>
+              <mat-form-field>
+                <input readonly matInput type="datetime" placeholder="time"
+                  [value]="measure.timestamp | date: 'HH:mm:ss:SS dd-MM-yyyy'">
+              </mat-form-field>
+            </form>
+          </div>
+
+
+    </mat-tab>
+    <mat-tab label="Events">
+
       <div class="sensor-content">
+        <span style="text-align: center;"> Set the sampling rate </span>
 
         <form class="sensor-content-form-sensing-rate" [formGroup]="options_sensing_rate" (ngSubmit)="send_update_sampling_rate()">
           <mat-form-field>
@@ -27,44 +55,15 @@
             <mat-spinner *ngIf="waiting_update_sampling_rate"  [diameter]="30" ></mat-spinner>
           </button>
         </form>
-
-        <form class="sensor-content-form" [formGroup]="options_data">
-          <mat-form-field>
-              <input readonly matInput type="number" placeholder="value" formControlName="value">
-          </mat-form-field>
-          <mat-form-field>
-              <input readonly matInput type="number" placeholder="time" formControlName="time">
-          </mat-form-field>
-        </form>
       </div>
-    </mat-tab>
-    <mat-tab label="Events">
-        <div class="sensor-content">
-          <app-event-add class="event-container" [sensorComponent]= "this"></app-event-add>
 
-          <app-event-remove *ngFor="let event of events" class="event-container" [event]="event" [sensorComponent]= "this"></app-event-remove>
-        </div>
-    </mat-tab>
+      <div class="sensor-content">
+        <span> Add a new event </span>
+        <app-event-add class="event-container" [sensorComponent]= "this"></app-event-add>
 
-    <mat-tab label="History">
-        <div class="sensor-content">
-
-          <button mat-button [disabled]="waiting_update_history" (click)="update_history()">
-            <mat-icon *ngIf="!waiting_update_history">refresh</mat-icon>
-            <mat-spinner *ngIf="waiting_update_history" [diameter]="36" ></mat-spinner>
-          </button>
-
-          <form *ngFor="let measure of history" class="sensor-content-form">
-            <mat-form-field>
-                <input readonly matInput type="number" placeholder="value" [value]="measure.value">
-            </mat-form-field>
-            <mat-form-field>
-                <input readonly matInput type="datetime" placeholder="time"
-                  [value]="measure.timestamp | date: 'HH:mm:ss:SS dd-MM-yyyy'">
-            </mat-form-field>
-          </form>
-
-        </div>
+        <span *ngIf="events.length > 0"> Active events </span>
+        <app-event-remove *ngFor="let event of events" class="event-container" [event]="event" [sensorComponent]= "this"></app-event-remove>
+      </div>
     </mat-tab>
   </mat-tab-group>
 

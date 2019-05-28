@@ -22,12 +22,6 @@ export class AppComponent implements OnInit {
   constructor(protected httpClient: HttpClient, plantsService: PlantsService) {
     this.plantsService = plantsService;
 
-    httpClient.get<string>("http://192.168.50.1:4201/my-ip")
-      .subscribe(x => this.save_ip_address(x, this));
-  }
-
-  save_ip_address(ip_address: string, this_: AppComponent) {
-    this_.ip_address = ip_address;
     this.updatePlants();
   }
 

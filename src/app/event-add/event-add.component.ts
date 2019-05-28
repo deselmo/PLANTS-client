@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { EventService } from '../api/index'
 import { SensorComponent } from '../sensor/sensor.component';
-import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -15,17 +14,16 @@ export class EventAddComponent implements OnInit {
 
   options_add_event: FormGroup;
 
-  app: AppComponent;
   eventService: EventService;
 
-  constructor(fb: FormBuilder, eventService: EventService, app: AppComponent) {
-    this.app = app;
+  constructor(fb: FormBuilder, eventService: EventService) {
     this.eventService = eventService;
 
     this.options_add_event = fb.group({
       color: 'primary',
       from: [],
       to: [],
+      communicate_to: [''],
     });
 
     this.options_add_event.controls['from'].setValidators([
@@ -52,7 +50,7 @@ export class EventAddComponent implements OnInit {
     this.eventService.subscribe(this.sensorComponent.sensor.microbit,{
         'data': data,
         'microbit': this.sensorComponent.sensor.microbit,
-        'return_address': this.app.ip_address
+        'return_address': this.options_add_event.controls['communicate_to'].value
       }).subscribe(() => this.on_add_event(this));
   }
 
