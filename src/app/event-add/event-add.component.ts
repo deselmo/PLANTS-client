@@ -40,16 +40,19 @@ export class EventAddComponent implements OnInit {
   }
 
   send_add_event() {
-    console.log('try to send');
+    let data = {'sensor': this.sensorComponent.sensor.sensor};
+
+    if(this.options_add_event.controls['to'].value) {
+      data['max_value'] = this.options_add_event.controls['to'].value;
+    }
+    if(this.options_add_event.controls['from'].value) {
+      data['min_value'] = this.options_add_event.controls['from'].value;
+    }
 
     this.eventService.subscribe(this.sensorComponent.sensor.microbit,{
-        "data": {
-          "max_value": this.options_add_event.controls['to'].value,
-          "min_value": this.options_add_event.controls['from'].value,
-          "sensor": this.sensorComponent.sensor.sensor
-        },
-        "microbit": this.sensorComponent.sensor.microbit,
-        "return_address": this.app.ip_address
+        'data': data,
+        'microbit': this.sensorComponent.sensor.microbit,
+        'return_address': this.app.ip_address
       }).subscribe(() => this.on_add_event(this));
   }
 
@@ -57,6 +60,5 @@ export class EventAddComponent implements OnInit {
     this_.sensorComponent.update_events();
     this_.options_add_event.controls['from'].setValue('');
     this_.options_add_event.controls['to'].setValue('');
-    console.log('done');
   }
 }
