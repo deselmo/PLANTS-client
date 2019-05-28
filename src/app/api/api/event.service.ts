@@ -28,7 +28,7 @@ import { Configuration }                                     from '../configurat
 @Injectable()
 export class EventService {
 
-    protected basePath = 'http://192.168.50.1:8080';
+    protected basePath = 'http://192.168.50.23:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
