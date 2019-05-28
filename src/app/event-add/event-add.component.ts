@@ -40,10 +40,11 @@ export class EventAddComponent implements OnInit {
   send_add_event() {
     let data = {'sensor': this.sensorComponent.sensor.sensor};
 
-    if(this.options_add_event.controls['to'].value) {
+    if(this.options_add_event.controls['to'].value != undefined) {
       data['max_value'] = this.options_add_event.controls['to'].value;
     }
-    if(this.options_add_event.controls['from'].value) {
+
+    if(this.options_add_event.controls['from'].value != undefined) {
       data['min_value'] = this.options_add_event.controls['from'].value;
     }
 
@@ -56,7 +57,7 @@ export class EventAddComponent implements OnInit {
 
   on_add_event(this_: EventAddComponent) {
     this_.sensorComponent.update_events();
-    this_.options_add_event.controls['from'].setValue('');
-    this_.options_add_event.controls['to'].setValue('');
+    this_.options_add_event.controls['from'].setValue(undefined);
+    this_.options_add_event.controls['to'].setValue(undefined);
   }
 }

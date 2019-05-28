@@ -13,11 +13,26 @@ export class EventRemoveComponent implements OnInit {
 
   eventService: EventService;
 
+  min_value: string = 'any';
+  max_value: string = 'any';
+  return_address: string = 'nobody';
+
   constructor(eventService: EventService) {
     this.eventService = eventService;
   }
 
   ngOnInit() {
+    if(this.event.data.min_value != undefined) {
+      this.min_value = this.event.data.min_value.toString();
+    }
+
+    if(this.event.data.max_value != undefined) {
+      this.max_value = this.event.data.max_value.toString();
+    }
+
+    if(this.event.return_address != "") {
+      this.return_address = this.event.return_address;
+    }
   }
 
   send_remove_event() {
