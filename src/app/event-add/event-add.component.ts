@@ -23,7 +23,7 @@ export class EventAddComponent implements OnInit {
       color: 'primary',
       from: [],
       to: [],
-      communicate_to: [''],
+      communicate_to: [],
     });
 
     this.options_add_event.controls['from'].setValidators([
