@@ -23,7 +23,7 @@ export class EventAddComponent implements OnInit {
       color: 'primary',
       from: [],
       to: [],
-      communicate_to: [],
+      communicate_to: [''],
     });
 
     this.options_add_event.controls['from'].setValidators([
@@ -59,6 +59,6 @@ export class EventAddComponent implements OnInit {
     this_.sensorComponent.update_events();
     this_.options_add_event.controls['from'].setValue(undefined);
     this_.options_add_event.controls['to'].setValue(undefined);
-    this_.options_add_event.controls['communicate_to'].setValue(undefined);
+    this_.options_add_event.controls['communicate_to'].setValue('');
   }
 }
